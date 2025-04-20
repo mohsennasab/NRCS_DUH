@@ -34,9 +34,10 @@ This application applies the NRCS Dimensionless Unit Hydrograph approach, expres
 
 The hydrograph formula used is:
 
-```math
-Q/Q_p = \left(rac{t}{T_p} \cdot e^{1 - rac{t}{T_p}}ight)^m
-```
+$$
+\frac{Q}{Q_p} = \left( \frac{t}{T_p} \cdot e^{1 - \frac{t}{T_p}} \right)^m
+$$
+
 
 Key time parameters:
 - **Time Lag (tₗₐg)**:
