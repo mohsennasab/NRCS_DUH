@@ -41,14 +41,14 @@ $$
 
 Key time parameters:
 - **Time Lag (tₗₐg)**:
-  - CN-based: `tₗₐg = 1.362e-3 × [(1000/CN - 9)^0.7] × [L^0.8 / √S₀]`
-  - S-based:  `tₗₐg = 1.362e-3 × [(S/25.4 + 1)^0.7] × [L^0.8 / √S₀]`
-- **Time of Concentration**: `t_c = tₗₐg / 0.6`
-- **Rainfall Duration**: `t_r = 0.133 × t_c`
-- **Time to Peak**: `T_p = 0.5 × t_r + tₗₐg`
+  - CN-based: t_{\text{lag}} = 1.362 \times 10^{-3} \cdot \left( \frac{1000}{\text{CN}} - 9 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}
+  - S-based:  t_{\text{lag}} = 1.362 \times 10^{-3} \cdot \left( \frac{S}{25.4} + 1 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}
+- **Time of Concentration**: t_c = \frac{t_{\text{lag}}}{0.6}
+- **Rainfall Duration**: t_r = 0.133 \cdot t_c
+- **Time to Peak**: T_p = 0.5 \cdot t_r + t_{\text{lag}}
 
 Conditions are validated against:  
-` t_r ≤ 0.2 × t_c ` or ` t_r ≤ 0.3 × T_p `
+t_r \leq 0.2 \cdot t_c \quad \text{or} \quad t_r \leq 0.3 \cdot T_p
 
 ---
 
