@@ -1,0 +1,31 @@
+# Ignore specific files and folders
+__Instructions for Mohsen/
+__pycache__/
+Reference Document/
+
+# Ignore Python cache files
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ignore system files
+.DS_Store
+Thumbs.db
