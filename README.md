@@ -1,154 +1,142 @@
+
 # NRCS Dimensionless Unit Hydrograph Generator
 
 <p align="center">
-  <img src="Images/Logo.png" alt="NRCS Hydrograph Generator Logo" width="200">
+  <img src="Images/Logo.png" alt="NRCS Hydrograph Generator Logo" width="400">
 </p>
 
-## Overview
+---
 
-The NRCS Dimensionless Unit Hydrograph Generator is an interactive web application that creates hydrographs for different Annual Exceedance Probabilities (AEPs) using the Natural Resources Conservation Service (NRCS) Dimensionless Unit Hydrograph methodology. This tool helps hydrologists and water resources engineers quickly generate and visualize runoff hydrographs for watershed analysis and design.
+## 🚀 Overview
 
-## Features
+The **NRCS Dimensionless Unit Hydrograph Generator** is an interactive web application for generating synthetic hydrographs based on user-defined watershed and rainfall conditions. Built on the widely accepted NRCS DUH methodology, this tool is ideal for simulating runoff from ungaged basins across a range of Annual Exceedance Probabilities (AEPs).
 
-- **Interactive Interface**: Clean, user-friendly Streamlit web application
-- **Multiple AEPs**: Support for 10 different AEP values (1, 2, 5, 10, 25, 50, 100, 200, 500, 1000 years)
-- **Versatile Calculation Methods**: Choose between CN-based or S-based time lag calculations
-- **Dynamic Visualization**: Interactive Plotly charts for hydrograph visualization
-- **Flexible Units**: Display results in CFS or m³/s
-- **Data Export**: Export results to CSV for further analysis
-- **Detailed Parameters**: View and understand all calculated time parameters
+---
 
-## Technical Background
+## ✨ Features
 
-This application implements the NRCS Dimensionless Unit Hydrograph methodology, which represents the average runoff response from watersheds. Key equations include:
+- 🔢 **Multiple AEPs**: Supports 1, 2, 5, 10, 25, 50, 100, 200, 500, and 1000-year events  
+- 📊 **Interactive Visualization**: Dynamic, responsive hydrograph plots using Plotly  
+- 💧 **Flexible Units**: View flows in cubic feet per second (CFS) or cubic meters per second (m³/s)  
+- 📁 **CSV Export**: Save calculated hydrographs for further analysis  
+- 🧠 **Transparent Calculations**: Displays all key time parameters  
+- 💻 **Web Interface**: Clean, user-friendly Streamlit app  
 
-### Time Parameters
+---
 
-- **Time Lag (tₗₐg)**: Can be calculated using either:
-  - CN-based: `tₗₐg = 1.362×10⁻³ × [(1000/CN - 9)⁰·⁷] × [L⁰·⁸/√S₀]`
-  - S-based: `tₗₐg = 1.362×10⁻³ × [(S/25.4 + 1)⁰·⁷] × [L⁰·⁸/√S₀]`
-  
-  where `L` is the hydraulic length in meters and `S₀` is the average catchment slope in percent.
+## 🧪 Methodology
 
-- **Time of Concentration (tc)**: `tc = tₗₐg / 0.6`
-- **Rainfall Duration (tr)**: `tr = 0.133 × tc`
-- **Time to Peak (Tp)**: `Tp = 0.5 × tr + tₗₐg`
+This application applies the NRCS Dimensionless Unit Hydrograph approach, expressing the normalized flow rate \( Q/Q_p \) as a function of normalized time \( t/T_p \), where:
 
-### Gamma Function for the NRCS Unit Hydrograph
+- \( Q_p \): peak runoff rate  
+- \( T_p \): time to peak from rainfall excess  
+- \( m \): gamma distribution shape factor (typically 3.7)
 
-The application uses the gamma function approach:
+The hydrograph formula used is:
 
-```
-Q/Qp = [(t/Tp)·exp(1-t/Tp)]^m
+```math
+Q/Q_p = \left(rac{t}{T_p} \cdot e^{1 - rac{t}{T_p}}ight)^m
 ```
 
-where:
-- `m = 3.7` for the standard NRCS unit hydrograph (configurable in the app)
-- `Q` is the runoff rate at time `t`
-- `Qp` is the peak runoff rate
-- `Tp` is the time to peak
+Key time parameters:
+- **Time Lag (tₗₐg)**:
+  - CN-based: `tₗₐg = 1.362e-3 × [(1000/CN - 9)^0.7] × [L^0.8 / √S₀]`
+  - S-based:  `tₗₐg = 1.362e-3 × [(S/25.4 + 1)^0.7] × [L^0.8 / √S₀]`
+- **Time of Concentration**: `t_c = tₗₐg / 0.6`
+- **Rainfall Duration**: `t_r = 0.133 × t_c`
+- **Time to Peak**: `T_p = 0.5 × t_r + tₗₐg`
 
-The application validates that the NRCS dimensionless unit hydrograph conditions are met:
-`tr ≤ 0.2 × tc` or `tr ≤ 0.3 × Tp`
+Conditions are validated against:  
+` t_r ≤ 0.2 × t_c ` or ` t_r ≤ 0.3 × T_p `
 
-## Installation
+---
 
-### Option 1: Clone Repository
+## 📦 Installation
 
-1. Clone this repository:
+### Option 1: Clone This Repo
 ```bash
 git clone https://github.com/mohsennasab/NRCS_DUH.git
 cd NRCS_DUH
 ```
 
 ### Option 2: Download ZIP
+- Download and extract from GitHub directly
 
-1. Download the ZIP file from the GitHub repository
-2. Extract the contents to a folder on your computer
-
-### Set Up Virtual Environment (Recommended)
-
-Creating a virtual environment ensures all dependencies are properly installed without affecting your other Python projects:
-
+### Set Up a Virtual Environment (Recommended)
 ```bash
-# Create a virtual environment named nrcs_duh
 python -m venv nrcs_duh
-
-# Activate the virtual environment
-# On Windows:
+# Activate:
+# Windows
 nrcs_duh\Scripts\activate
-# On Mac/Linux:
+# Mac/Linux
 source nrcs_duh/bin/activate
 
-# Install required packages with exact versions
+# Install dependencies
 pip install streamlit==1.41.1 pandas==1.5.3 numpy==1.26.4 plotly==5.15.0
 ```
 
-## How to Run
+---
 
-### Manual Method
+## ▶️ How to Run
 
-If the easy method doesn't work, you can run the application manually:
-
+### Run the app
 ```bash
 python run_app.py
 ```
 
-Or directly with Streamlit:
-
+### Or launch with Streamlit directly
 ```bash
 streamlit run streamlit_app.py --server.port=8888
 ```
 
-## Usage
+---
 
-1. In the sidebar, select your calculation method (CN or S)
-2. Enter your watershed parameters:
-   - Catchment Area (square miles)
-   - Curve Number (CN) or Potential Maximum Storage (S)
-   - Average Catchment Slope (%)
-   - Time Interval (minutes)
-   - Display units (CFS or m³/s)
-3. Enter peak flows for the AEPs you want to analyze (leave others blank)
-4. Click "Generate Hydrographs"
-5. View your results in the three tabs:
-   - **Hydrograph Plot**: Visual representation of all hydrographs
-   - **Hydrograph Data**: Tabular data with download option
-   - **Calculated Parameters**: Time parameters with explanations
+## 🧑‍💻 Usage
 
-## Project Structure
-
-- `streamlit_app.py`: Main application file with the UI and logic
-- `nrcs_calculator.py`: Core calculation module implementing the NRCS methodology
-- `run_app.py`: Python launcher script to automatically start the application
-- `run_app.bat`: Windows batch file for easy launching
-- `run_app.sh`: Shell script for Mac/Linux users
-- `Images/`: Contains the application logo and other images
-
-## References
-
-This implementation is based on the NRCS Dimensionless Unit Hydrograph methodology as described in:
-
-- **NRCS Chapter 16 - Hydrographs**: [NRCS Hydrographs Manual](https://directives.nrcs.usda.gov/sites/default/files2/1720461096/Chapter%2016%20-%20Hydrographs.pdf)
-- **NOAA Unit Hydrograph Manual**: [NOHRSC GIS Unit Hydrograph Manual](https://www.nohrsc.noaa.gov/technology/gis/uhg_manual.html)  
-
-## Troubleshooting
-
-If you encounter issues:
-
-1. **Port in use**: The launcher will automatically try to find an available port
-2. **Streamlit not found**: Make sure you have installed Streamlit (`pip install streamlit==1.41.1`)
-3. **Browser doesn't open**: Manually navigate to the URL shown in the console (typically http://localhost:8888)
-4. **Permission errors**: Try running as administrator (Windows) or with sudo (Mac/Linux)
-
-## License
-
-This project is available for educational and professional use.
-
-## Author
-
-Created by [Mohsen Tahmasebi Nasab, PhD](https://www.hydromohsen.com/)
+1. Choose your calculation method (Curve Number or S-based)
+2. Enter watershed parameters:
+   - Area (sq mi), Curve Number (CN) or Storage (S), average slope, time interval
+3. Input known peak flows for selected AEPs
+4. Click **"Generate Hydrographs"**
+5. Explore:
+   - 🌊 **Hydrograph Plot**
+   - 📋 **Tabular Data** (with download)
+   - 🧠 **Time Parameters**
 
 ---
 
-<p align="center">© 2025 | NRCS Hydrograph Generator</p>
+## 📁 Project Structure
+
+| File                | Description                                    |
+|---------------------|------------------------------------------------|
+| `streamlit_app.py`  | Main Streamlit interface                       |
+| `nrcs_calculator.py`| Core hydrograph generation logic               |
+| `run_app.py`        | Launch script                                  |
+| `Images/`           | Contains app logo and graphics                 |
+| `README.md`         | This file 🚀                                   |
+
+---
+
+## 📚 References
+
+- [NRCS Chapter 16 – Hydrographs (PDF)](https://directives.nrcs.usda.gov/sites/default/files2/1720461096/Chapter%2016%20-%20Hydrographs.pdf)  
+- [NOAA Unit Hydrograph Manual](https://www.nohrsc.noaa.gov/technology/gis/uhg_manual.html)
+
+---
+
+## 🛠️ Troubleshooting
+
+- **Port already in use?** The app auto-detects the next available port  
+- **Streamlit not found?** Run `pip install streamlit==1.41.1`  
+- **No browser?** Manually visit `http://localhost:8888`  
+- **Permission denied?** Try running with `sudo` (Linux/macOS) or as admin (Windows)
+
+---
+
+## 👨‍💻 Author
+
+Created by [Mohsen Tahmasebi Nasab, PhD](https://www.hydromohsen.com)
+
+---
+
+<p align="center"><em>© 2025 | NRCS Hydrograph Generator</em></p>
