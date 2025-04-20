@@ -28,9 +28,9 @@ The **NRCS Dimensionless Unit Hydrograph Generator** is an interactive web appli
 
 This application applies the NRCS Dimensionless Unit Hydrograph approach, expressing the normalized flow rate \( Q/Q_p \) as a function of normalized time \( t/T_p \), where:
 
-- \( Q_p \): peak runoff rate  
-- \( T_p \): time to peak from rainfall excess  
-- \( m \): gamma distribution shape factor (typically 3.7)
+- ($Q_p$): peak runoff rate
+- ($T_p$): time to peak from rainfall excess
+- ($m$): gamma distribution shape factor (typically 3.7)
 
 The hydrograph formula used is:
 
@@ -39,16 +39,15 @@ $$
 $$
 
 
-Key time parameters:
-- **Time Lag (tₗₐg)**:
-  - CN-based: t_{\text{lag}} = 1.362 \times 10^{-3} \cdot \left( \frac{1000}{\text{CN}} - 9 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}
-  - S-based:  t_{\text{lag}} = 1.362 \times 10^{-3} \cdot \left( \frac{S}{25.4} + 1 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}
-- **Time of Concentration**: t_c = \frac{t_{\text{lag}}}{0.6}
-- **Rainfall Duration**: t_r = 0.133 \cdot t_c
-- **Time to Peak**: T_p = 0.5 \cdot t_r + t_{\text{lag}}
+- Time Lag ($t_{lag}$):
+  - CN-based: $t_{lag} = 1.362 \times 10^{-3} \cdot \left(\frac{1000}{CN} - 9 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}$
+  - S-based: $t_{lag} = 1.362 \times 10^{-3} \cdot \left(\frac{S}{25.4} + 1 \right)^{0.7} \cdot \frac{L^{0.8}}{\sqrt{S_0}}$
+- Time of Concentration: $t_c = \frac{t_{lag}}{0.6}$
+- Rainfall Duration: $t_r = 0.133 \cdot t_c$
+- Time to Peak: $T_p = 0.5 \cdot t_r + t_{lag}$
 
-Conditions are validated against:  
-t_r \leq 0.2 \cdot t_c \quad \text{or} \quad t_r \leq 0.3 \cdot T_p
+Conditions are validated against:
+$t_r \leq 0.2 \cdot t_c \quad \textrm{or} \quad t_r \leq 0.3 \cdot T_p$
 
 ---
 
