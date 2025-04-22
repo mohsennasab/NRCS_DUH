@@ -22,6 +22,14 @@ The **NRCS Dimensionless Unit Hydrograph Generator** is an interactive web appli
 - 🧠 **Transparent Calculations**: Displays all key time parameters  
 - 💻 **Web Interface**: Clean, user-friendly Streamlit app  
 
+
+### 📺 Click the image below to watch 5-min tutorial on how to install and use the NRCS DUH tool:
+
+<a href="https://youtu.be/VmRRUMsureQ?si=S1H3Y5KVb6yU4Bdl" target="_blank">
+  <img src="https://img.youtube.com/vi/VmRRUMsureQ/maxresdefault.jpg" width="500"/>
+</a>
+
+
 ---
 
 ## 🧪 Methodology
